@@ -9,5 +9,5 @@ services:
     app.redsys_config:
         class: Eclyptox\SyliusRedsysPlugin\Form\Type\SyliusGatewayConfigurationType
         tags:
-            - { name: sylius.gateway_configuration_type, type: "redsys_payment", label: "Redsys Payment" }
+            - { name: sylius.gateway_configuration_type, type: "redsys_payment", label: "Redsys" }
             - { name: form.type }

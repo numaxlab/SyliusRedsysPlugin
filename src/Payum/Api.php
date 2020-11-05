@@ -10,8 +10,6 @@ class Api
 {
     const TRANSACTIONTYPE_AUTHORIZATION = 0;
 
-    const CONSUMERLANGUAGE_SPANISH = '001';
-
     const DS_RESPONSE_CANCELED = '0184';
 
     const DS_RESPONSE_USER_CANCELED = '9915';
@@ -27,6 +25,8 @@ class Api
         'terminal' => null,
         'secret_key' => null,
         'sandbox' => true,
+        'consumer_language' => null,
+        'pay_methods' => null
     );
 
     /**
@@ -59,7 +59,6 @@ class Api
         $this->payment_vars[$key] = $value;
     }
 
-
     public function __construct(array $options)
     {
         $this->options = array_replace($this->options, $options);
@@ -75,6 +74,9 @@ class Api
         }
         if (false == is_bool($this->options['sandbox'])) {
             throw new InvalidArgumentException('The boolean sandbox option must be set.');
+        }
+        if (true == empty($this->options['consumer_language'])) {
+            throw new InvalidArgumentException('The language option must be set.');
         }
     }
 
@@ -116,6 +118,22 @@ class Api
     public function getMerchantTerminalCode()
     {
         return $this->options['terminal'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getConsumerLanguageCode()
+    {
+        return $this->options['consumer_language'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getPayMethodsCode()
+    {
+        return $this->options['pay_methods'] ?? null;
     }
 
     /**

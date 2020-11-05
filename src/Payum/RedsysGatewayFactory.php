@@ -65,10 +65,12 @@ class RedsysGatewayFactory implements GatewayFactoryInterface
                 'terminal' => '',
                 'secret_key' => '',
                 'sandbox' => true,
+                'consumer_language' => '',
+                'pay_methods' => '',
             );
 
             $config->defaults($config['payum.default_options']);
-            $config['payum.required_options'] = array('merchant_code', 'terminal', 'secret_key');
+            $config['payum.required_options'] = array('merchant_code', 'terminal', 'secret_key', 'consumer_language');
 
             $config['payum.api'] = function (ArrayObject $config) {
                 $config->validateNotEmpty($config['payum.required_options']);
@@ -78,6 +80,8 @@ class RedsysGatewayFactory implements GatewayFactoryInterface
                     'terminal' => $config['terminal'],
                     'secret_key' => $config['secret_key'],
                     'sandbox' => $config['sandbox'],
+                    'consumer_language' => $config['consumer_language'],
+                    'pay_methods' => $config['pay_methods'],
                 );
 
                 return new Api($redsysConfig);

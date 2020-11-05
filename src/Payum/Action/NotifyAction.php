@@ -1,4 +1,5 @@
 <?php
+
 namespace Eclyptox\SyliusRedsysPlugin\Payum\Action;
 
 use ArrayAccess;
